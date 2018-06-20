@@ -36,7 +36,7 @@ final class FilesystemCache implements ICache
 
 	private function sanitizeId(string $id): string
 	{
-		return $id;
+		return sha1($id);
 	}
 
 }
