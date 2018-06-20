@@ -27,7 +27,11 @@ final class FilesystemCache implements ICache
 	 */
 	public function load(string $id): array
 	{
-		return json_decode(file_get_contents($this->cacheFullName($id)), true);
+		if ($this->hasProduct($id)) {
+			return json_decode(file_get_contents($this->cacheFullName($id)), true);
+		}
+
+		throw new \RuntimeException('Cache entry for product '.$id.' was not found.');
 	}
 
 	/**
