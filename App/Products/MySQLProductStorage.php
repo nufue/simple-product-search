@@ -1,6 +1,6 @@
 <?php
 
-namespace APp\Products;
+namespace App\Products;
 
 final class MySQLProductStorage implements IProductStorage {
 
