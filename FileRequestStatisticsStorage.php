@@ -17,6 +17,9 @@ final class FileRequestStatisticsStorage implements IRequestStatisticsStorage
 		}
 	}
 
+	/**
+	 * Increase request counter for product.
+	 */
 	public function markRequest(string $id): void
 	{
 		$fp = fopen($this->lockFile, 'wb');

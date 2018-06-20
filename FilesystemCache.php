@@ -14,26 +14,41 @@ final class FilesystemCache implements ICache
 		}
 	}
 
+	/**
+	 * Do we have the product already in cache?
+	 */
 	public function hasProduct(string $id): bool
 	{
 		return file_exists($this->cacheFullName($id));
 	}
 
+	/**
+	 * Load cached product data from a file.
+	 */
 	public function load(string $id): array
 	{
 		return json_decode(file_get_contents($this->cacheFullName($id)), true);
 	}
 
+	/**
+	 * Saved cached product data to file.
+	 */
 	public function save(string $id, array $product): void
 	{
 		file_put_contents($this->cacheFullName($id), json_encode($product));
 	}
 
+	/**
+	 * Construct full pathname for product cache file.
+	 */
 	private function cacheFullName(string $id): string
 	{
 		return $this->cacheDir . $this->sanitizeId($id);
 	}
 
+	/**
+	 * Sanitize product ID to be safe for filesystem storage.
+	 */
 	private function sanitizeId(string $id): string
 	{
 		return sha1($id);

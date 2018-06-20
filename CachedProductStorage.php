@@ -17,6 +17,9 @@ final class CachedProductStorage implements IProductStorage
 		$this->cache = $cache;
 	}
 
+	/**
+	 * Look into cache to get product by ID. When not found, load from parent storage and save to cache.
+	 */
 	public function getById(string $id): array
 	{
 		if ($this->cache->hasProduct($id)) {
